@@ -1,8 +1,13 @@
 import React from 'react';
+import ConversionSection from '../components/ConversionSection';
+import CalculationSection from '../components/CalculationSection';
 
 function Home() {
     return (
-        <div>Home</div>
+        <div className="page-wrapper">
+            <ConversionSection />
+            <CalculationSection />
+        </div>
     );
 }
 

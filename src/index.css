@@ -1,10 +1,14 @@
 @import url('/src/stylesheets/ss-shared/Variables.css');
+@import url('/src/stylesheets/ss-shared/Inputs.css');
 /*@import url('/src/stylesheets/ss-shared/Buttons.css');
 @import url('/src/stylesheets/ss-shared/Forms.css');
 @import url('/src/stylesheets/ss-shared/Overrides.css'); */
 
 /* DOM layout */
-html, body, #root { height: 100%; }
+html, body, #root {
+    height: 100%;
+    background: #0a0a0a;
+}
 
 #root { margin: 0 auto; }
 
@@ -15,7 +19,7 @@ html, body, #root { height: 100%; }
 }
 
 html {
-    font-family: var(--font-1);
+    font-family: var(--font-1-regular);
     font-size: 62.5%;
     box-sizing: border-box;
     background: var(--bg-1);
@@ -24,7 +28,8 @@ html {
 
 /* Text sizing */
 h1 { font-size: 3rem; }
-h2, .p-lg { font-size: 2rem; }
+h2 { font-size: 2.5rem; }
+h3, .p-lg { font-size: 2rem; }
 p, a, span { font-size: 1.75rem; }
 .p-sm, label { font-size: 1.5rem; }
 .p-xs { font-size: 1.25rem; }
@@ -35,7 +40,8 @@ p, a, span { font-size: 1.75rem; }
     width: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 1024px;
+    /* max-width: 1024px; */
+    padding: 2rem 0;
 }
 
 .page-content {
@@ -104,7 +110,8 @@ p, a, span { font-size: 1.75rem; }
     }
 
     h1 { font-size: 2.5rem; }
-    h2, .p-lg { font-size: 1.75rem; }
+    h2 { font-size: 2rem; }
+    h3, .p-lg { font-size: 1.75rem; }
     p, a, span { font-size: 1.5rem; }
     .p-sm, label { font-size: 1.25rem; }
     .p-xs { font-size: 1rem; }

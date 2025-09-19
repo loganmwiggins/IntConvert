@@ -2,8 +2,8 @@ import React from 'react';
 
 function BaseDropdown({ onSelect }) {
     return (
-        <select onChange={(e) => onSelect(e.target.value)}>
-            <option hidden disabled selected value>Choose...</option>
+        <select defaultValue="" onChange={(e) => onSelect(e.target.value)}>
+            <option disabled value="">Choose...</option>
             <option value="bin">Binary (base 2)</option>
             <option value="oct">Octal (base 8)</option>
             <option value="dec">Decimal (base 10)</option>

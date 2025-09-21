@@ -551,31 +551,33 @@ function Home() {
                 </div>
 
                 <div className="calculation-section">
+                    <h3>Results</h3>
+                    <br />
+
                     <div>
-                        From: {fromBase ? labelMap[fromBase] : ""}
+                        <p>From: {fromBase ? labelMap[fromBase] : ""}</p>
+                        <p>To: {toBase ? labelMap[toBase] : ""}</p>
                         <br />
+
+                        <p>Input: {fromValue}</p>
+                        <p>Result: {result}</p>
                         <br />
-                        To: {toBase ? labelMap[toBase] : ""}
+                        
+                        <p>Formula:</p>
                         <br />
-                        Input: {fromValue}
+                        <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
                         <br />
-                        Result: {result}
+
+                        <p>Explained:</p>
+                        <p dangerouslySetInnerHTML={{ __html: description || "" }} />
                         <br />
+
+                        <p>Other result 1:</p>
+                        <p>{otherResult1}</p>
                         <br />
-                        Formula:
-                        <br />
-                        <div
-                        dangerouslySetInnerHTML={{ __html: calculationHtml || "" }}
-                        />
-                        <br />
-                        About this conversion:
-                        <div
-                        dangerouslySetInnerHTML={{ __html: description || "" }}
-                        />
-                        <br />
-                        Other result 1: {otherResult1}
-                        <br />
-                        Other result 2: {otherResult2}
+
+                        <p>Other result 2:</p>
+                        <p>{otherResult2}</p>
                     </div>
                 </div>
             </div>

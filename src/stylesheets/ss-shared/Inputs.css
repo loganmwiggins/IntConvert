@@ -9,3 +9,19 @@
     flex-direction: column;
     gap: .25rem;
 }
+
+input, select {
+    padding: .75rem;
+    border: 1px solid var(--border-input);
+    border-radius: .5rem;
+    font-size: 1.75rem;
+}
+
+button {
+    background: var(--bg-5);
+    padding: .75rem 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

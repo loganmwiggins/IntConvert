@@ -448,6 +448,17 @@ function getOtherResults(from, to, value, setCalculationHtml) {
     return [String(value), String(value)];
 }
 
+// Returns a regex for allowed characters based on base
+function getBaseRegex(base) {
+    switch (base) {
+        case "bin": return /^[01]*$/i;
+        case "oct": return /^[0-7]*$/i;
+        case "dec": return /^[0-9]*$/i;
+        case "hex": return /^[0-9a-f]*$/i;
+        default: return /^.*$/;
+    }
+}
+
 // ---------------------------
 // Component
 // ---------------------------
@@ -460,9 +471,31 @@ function Home() {
     const [description, setDescription] = useState(null);
     const [otherResult1, setOtherResult1] = useState(null);
     const [otherResult2, setOtherResult2] = useState(null);
+    const [inputError, setInputError] = useState(null);
+
+    // Validate input on change
+    const handleInputChange = (e) => {
+        const val = e.target.value.toUpperCase();
+        const regex = getBaseRegex(fromBase);
+        if (regex.test(val)) {
+            setFromValue(val);
+            setInputError(null);
+        } 
+        else {
+            setInputError("Invalid character for selected base.");
+        }
+    };
 
     const runConvert = () => {
-        if (!fromBase || !toBase || fromValue === "" || fromValue == null) return;
+        if (!fromBase || !toBase || fromValue === "" || fromValue == null) 
+            return;
+        
+        const regex = getBaseRegex(fromBase);
+        if (!regex.test(fromValue)) {
+            setInputError("Input contains invalid characters for the selected base.");
+            return;
+        }
+        setInputError(null);
 
         const from = baseName(fromBase);
         const to = baseName(toBase);
@@ -524,12 +557,12 @@ function Home() {
                 <div className="conversion-section">
                     <div className="input-row">
                         <div className="labeled-input">
-                        <p>Convert from</p>
-                        <BaseDropdown onSelect={setFromBase} />
+                            <p>Convert from</p>
+                            <BaseDropdown onSelect={setFromBase} />
                         </div>
                         <div className="labeled-input">
-                        <p>Convert to</p>
-                        <BaseDropdown onSelect={setToBase} />
+                            <p>Convert to</p>
+                            <BaseDropdown onSelect={setToBase} />
                         </div>
                     </div>
 
@@ -537,16 +570,30 @@ function Home() {
                         <p>Enter value</p>
                         {/* Use text to allow hex letters like A-F, matching original app */}
                         <input
-                        type="text"
-                        value={fromValue ?? ""}
-                        onChange={(e) => setFromValue(e.target.value)}
+                            type="text"
+                            value={fromValue ?? ""}
+                            onChange={handleInputChange}
+                            disabled={!fromBase}
                         />
+                        {inputError && (
+                            <span style={{ color: "red", fontSize: "0.9em" }}>{inputError}</span>
+                        )}
                     </div>
 
                     <div className="input-row">
                         <button onClick={handleClear}>Clear</button>
                         <button onClick={handleSwap}>Swap</button>
-                        <button onClick={runConvert}>Convert</button>
+                        <button 
+                            onClick={runConvert}
+                            disabled={
+                                !fromBase ||
+                                !toBase ||
+                                !fromValue ||
+                                !!inputError
+                            }
+                        >
+                            Convert
+                        </button>
                     </div>
                 </div>
 

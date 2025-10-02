@@ -96,6 +96,10 @@ p, a, span { font-size: 1.75rem; }
 .jcsb { justify-content: space-between; }
 .mwfc { max-width: fit-content; }
 .w-100 { width: 100%; }
+.g-1 { gap: 1rem; }
+.g-2 { gap: 2rem; }
+.g-3 { gap: 3rem; }
+.g-4 { gap: 4rem; }
 
 
 

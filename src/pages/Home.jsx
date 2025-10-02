@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ConversionSection from '../components/ConversionSection';
 import CalculationSection from '../components/CalculationSection';
@@ -168,6 +168,13 @@ function Home() {
     const [otherResult2Label, setOtherResult2Label] = useState(null);
     const [inputError, setInputError] = useState(null);
 
+    // If both end up the same, clear the "to" side (or choose whichever you prefer)
+    useEffect(() => {
+        if (fromBase && toBase && fromBase === toBase) {
+            setToBase(null);
+        }
+    }, [fromBase, toBase]);
+
     // Validate input on change
     const handleInputChange = (e) => {
         const val = e.target.value.toUpperCase();
@@ -255,11 +262,19 @@ function Home() {
                     <div className="input-row">
                         <div className="labeled-input">
                             <p>Convert from</p>
-                            <BaseDropdown onSelect={setFromBase} />
+                            <BaseDropdown
+                                value={fromBase}
+                                onSelect={setFromBase}
+                                exclude={toBase}
+                            />
                         </div>
                         <div className="labeled-input">
                             <p>Convert to</p>
-                            <BaseDropdown onSelect={setToBase} />
+                            <BaseDropdown
+                                value={toBase}
+                                onSelect={setToBase}
+                                exclude={fromBase}
+                            />
                         </div>
                     </div>
 
@@ -299,12 +314,17 @@ function Home() {
                     <br />
 
                     <div>
-                        <p>From: {fromBase ? labelMap[fromBase] : ""}</p>
-                        <p>To: {toBase ? labelMap[toBase] : ""}</p>
-                        <br />
-
-                        <p>Input: {fromValue}</p>
-                        <p>Result: {result}</p>
+                        <div className="results-row">
+                            <div className="labeled-input">
+                                <p>{fromBase ? labelMap[fromBase] : ""}</p>
+                                <h1>{fromValue}</h1>
+                            </div>
+                            <div className="labeled-input">
+                                <p>{toBase ? labelMap[toBase] : ""}</p>
+                                <h1>{result}</h1>
+                            </div>
+                        </div>
+                        
                         <br />
                         
                         <p>Formula:</p>

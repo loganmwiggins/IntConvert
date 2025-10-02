@@ -15,3 +15,9 @@ section {
     overflow-y: scroll;
     max-height: 600px;
 }
+
+.results-row {
+    display: flex;
+    align-items: start;
+    gap: 4rem;
+}

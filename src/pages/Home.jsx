@@ -597,7 +597,7 @@ function Home() {
     return (
         <div className="page-wrapper">
             <div className="home-layout">
-                <div className="conversion-section">
+                <section className="conversion-section">
                     <div className="input-row">
                         <div className="labeled-input">
                             <p>Convert from</p>
@@ -638,9 +638,9 @@ function Home() {
                             Convert
                         </button>
                     </div>
-                </div>
+                </section>
 
-                <div className="calculation-section">
+                <section className="calculation-section">
                     <h3>Results</h3>
                     <br />
 
@@ -669,7 +669,7 @@ function Home() {
                         <p>Other result 2{otherResult2Label ? ` (${otherResult2Label})` : ""}:</p>
                         <p>{otherResult2}</p>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
     );

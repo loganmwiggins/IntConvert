@@ -1,4 +1,17 @@
 .home-layout {
     display: flex;
-    gap: 2rem;
+    gap: 4rem;
+    height: 100%;
+    /* background: lightblue; */
+}
+
+section {
+    flex: 1;
+    overflow-x: hidden;
+    min-width: 0;
+}
+
+.calculation-section {
+    overflow-y: scroll;
+    max-height: 600px;
 }

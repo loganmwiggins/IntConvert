@@ -426,26 +426,65 @@ function hexToOct(num, setCalculationHtml) {
 }
 
 // Other results (same pairings as scripts.js)
-function getOtherResults(from, to, value, setCalculationHtml) {
-    // Reuse the exact mapping from fillOtherResultValues()
-    const run = (f, ...args) => f(...args, setCalculationHtml);
+function getOtherResults(from, to, value) {
+    // Run without touching the calculationgHtml
+    const run = (f, ...args) => f(...args, () => {});
 
-    if (from === "Binary" && to === "Decimal") return [run(binToOct, value), run(binToHex, value)];
-    if (from === "Octal" && to === "Decimal") return [run(octToBin, value), run(octToHex, value)];
-    if (from === "Hexadecimal" && to === "Decimal") return [run(hexToBin, value), run(hexToOct, value)];
+    if (from === "Binary" && to === "Decimal") return [
+        { label: "Octal",       value: run(binToOct, value) },
+        { label: "Hexadecimal", value: run(binToHex, value) }
+    ];
+    if (from === "Octal" && to === "Decimal") return [
+        { label: "Binary",      value: run(octToBin, value) },
+        { label: "Hexadecimal", value: run(octToHex, value) }
+    ];
+    if (from === "Hexadecimal" && to === "Decimal") return [
+        { label: "Binary", value: run(hexToBin, value) },
+        { label: "Octal",  value: run(hexToOct, value) }
+    ];
 
-    if (from === "Decimal" && to === "Binary") return [run(decToOct, value), run(decToHex, value)];
-    if (from === "Decimal" && to === "Octal") return [run(decToBin, value), run(decToHex, value)];
-    if (from === "Decimal" && to === "Hexadecimal") return [run(decToBin, value), run(decToOct, value)];
+    if (from === "Decimal" && to === "Binary") return [
+        { label: "Octal",       value: run(decToOct, value) },
+        { label: "Hexadecimal", value: run(decToHex, value) }
+    ];
+    if (from === "Decimal" && to === "Octal") return [
+        { label: "Binary",      value: run(decToBin, value) },
+        { label: "Hexadecimal", value: run(decToHex, value) }
+    ];
+    if (from === "Decimal" && to === "Hexadecimal") return [
+        { label: "Binary", value: run(decToBin, value) },
+        { label: "Octal",  value: run(decToOct, value) }
+    ];
 
-    if (from === "Binary" && to === "Octal") return [run(binToDec, value), run(binToHex, value)];
-    if (from === "Binary" && to === "Hexadecimal") return [run(binToOct, value), run(binToDec, value)];
-    if (from === "Octal" && to === "Binary") return [run(octToDec, value), run(octToHex, value)];
-    if (from === "Hexadecimal" && to === "Binary") return [run(hexToOct, value), run(hexToDec, value)];
-    if (from === "Octal" && to === "Hexadecimal") return [run(octToBin, value), run(octToDec, value)];
-    if (from === "Hexadecimal" && to === "Octal") return [run(hexToBin, value), run(hexToDec, value)];
+    if (from === "Binary" && to === "Octal") return [
+        { label: "Decimal",     value: run(binToDec, value) },
+        { label: "Hexadecimal", value: run(binToHex, value) }
+    ];
+    if (from === "Binary" && to === "Hexadecimal") return [
+        { label: "Octal",   value: run(binToOct, value) },
+        { label: "Decimal", value: run(binToDec, value) }
+    ];
+    if (from === "Octal" && to === "Binary") return [
+        { label: "Decimal",     value: run(octToDec, value) },
+        { label: "Hexadecimal", value: run(octToHex, value) }
+    ];
+    if (from === "Hexadecimal" && to === "Binary") return [
+        { label: "Octal",   value: run(hexToOct, value) },
+        { label: "Decimal", value: run(hexToDec, value) }
+    ];
+    if (from === "Octal" && to === "Hexadecimal") return [
+        { label: "Binary",  value: run(octToBin, value) },
+        { label: "Decimal", value: run(octToDec, value) }
+    ];
+    if (from === "Hexadecimal" && to === "Octal") return [
+        { label: "Binary",  value: run(hexToBin, value) },
+        { label: "Decimal", value: run(hexToDec, value) }
+    ];
 
-    return [String(value), String(value)];
+    return [
+        { label: baseName(from), value: String(value) },
+        { label: baseName(from), value: String(value) }
+    ];
 }
 
 // Returns a regex for allowed characters based on base
@@ -471,6 +510,8 @@ function Home() {
     const [description, setDescription] = useState(null);
     const [otherResult1, setOtherResult1] = useState(null);
     const [otherResult2, setOtherResult2] = useState(null);
+    const [otherResult1Label, setOtherResult1Label] = useState(null);
+    const [otherResult2Label, setOtherResult2Label] = useState(null);
     const [inputError, setInputError] = useState(null);
 
     // Validate input on change
@@ -526,9 +567,11 @@ function Home() {
         setAboutFromTo(from, to, setDescription);
 
         // 3) Other results (same pairings as your original)
-        const [o1, o2] = getOtherResults(from, to, fromValue, setCalculationHtml);
-        setOtherResult1(o1);
-        setOtherResult2(o2);
+        const [o1, o2] = getOtherResults(from, to, fromValue);
+        setOtherResult1(o1.value);
+        setOtherResult2(o2.value);
+        setOtherResult1Label(o1.label);
+        setOtherResult2Label(o2.label);
     };
 
     const handleClear = () => {
@@ -619,11 +662,11 @@ function Home() {
                         <p dangerouslySetInnerHTML={{ __html: description || "" }} />
                         <br />
 
-                        <p>Other result 1:</p>
+                        <p>Other result 1{otherResult1Label ? ` (${otherResult1Label})` : ""}:</p>
                         <p>{otherResult1}</p>
                         <br />
 
-                        <p>Other result 2:</p>
+                        <p>Other result 2{otherResult2Label ? ` (${otherResult2Label})` : ""}:</p>
                         <p>{otherResult2}</p>
                     </div>
                 </div>

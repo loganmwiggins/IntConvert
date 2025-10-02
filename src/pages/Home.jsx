@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import ConversionSection from '../components/ConversionSection';
 import CalculationSection from '../components/CalculationSection';
@@ -258,6 +259,7 @@ function Home() {
     return (
         <div className="page-wrapper">
             <div className="home-layout">
+                {/* CONVERSION SECTION */}
                 <section className="conversion-section">
                     <div className="input-row">
                         <div className="labeled-input">
@@ -309,41 +311,52 @@ function Home() {
                     </div>
                 </section>
 
-                <section className="calculation-section">
-                    <h3>Results</h3>
-                    <br />
+                {/* CALCULATION SECTION */}
+                <AnimatePresence>
+                    {result !== null && (
+                        <motion.section 
+                            className="calculation-section"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                            <h3>Results</h3>
+                            <br />
 
-                    <div>
-                        <div className="results-row">
-                            <div className="labeled-input">
-                                <p>{fromBase ? labelMap[fromBase] : ""}</p>
-                                <h1>{fromValue}</h1>
+                            <div>
+                                <div className="results-row">
+                                    <div className="labeled-input">
+                                        <p>{fromBase ? labelMap[fromBase] : ""}</p>
+                                        <h1>{fromValue}</h1>
+                                    </div>
+                                    <div className="labeled-input">
+                                        <p>{toBase ? labelMap[toBase] : ""}</p>
+                                        <h1>{result}</h1>
+                                    </div>
+                                </div>
+                                <br />
+                                
+                                <p>Formula:</p>
+                                <br />
+                                <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
+                                <br />
+
+                                <p>Explained:</p>
+                                <p dangerouslySetInnerHTML={{ __html: description || "" }} />
+                                <br />
+
+                                <p>Other result 1{otherResult1Label ? ` (${otherResult1Label})` : ""}:</p>
+                                <p>{otherResult1}</p>
+                                <br />
+
+                                <p>Other result 2{otherResult2Label ? ` (${otherResult2Label})` : ""}:</p>
+                                <p>{otherResult2}</p>
                             </div>
-                            <div className="labeled-input">
-                                <p>{toBase ? labelMap[toBase] : ""}</p>
-                                <h1>{result}</h1>
-                            </div>
-                        </div>
-                        
-                        <br />
-                        
-                        <p>Formula:</p>
-                        <br />
-                        <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
-                        <br />
-
-                        <p>Explained:</p>
-                        <p dangerouslySetInnerHTML={{ __html: description || "" }} />
-                        <br />
-
-                        <p>Other result 1{otherResult1Label ? ` (${otherResult1Label})` : ""}:</p>
-                        <p>{otherResult1}</p>
-                        <br />
-
-                        <p>Other result 2{otherResult2Label ? ` (${otherResult2Label})` : ""}:</p>
-                        <p>{otherResult2}</p>
-                    </div>
-                </section>
+                        </motion.section>
+                    )}
+                </AnimatePresence>
+                
             </div>
         </div>
     );

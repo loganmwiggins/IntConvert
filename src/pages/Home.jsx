@@ -294,9 +294,21 @@ function Home() {
                         )}
                     </div>
 
-                    <div className="input-row">
-                        <button onClick={handleClear}>Clear</button>
-                        <button onClick={handleSwap}>Swap</button>
+                    <div className="button-row">
+                        <button 
+                            className="btn-secondary"
+                            onClick={handleClear}
+                        >
+                            <img src="/assets/icons/eraser.svg" draggable="false" />
+                            <span>Clear</span>
+                        </button>
+                        <button 
+                            className="btn-secondary"
+                            onClick={handleSwap}
+                        >
+                            <img src="/assets/icons/shuffle.svg" draggable="false" />
+                            <span>Swap</span>
+                        </button>
                         <button 
                             onClick={runConvert}
                             disabled={
@@ -305,8 +317,10 @@ function Home() {
                                 !fromValue ||
                                 !!inputError
                             }
+                            className="btn-primary"
                         >
-                            Convert
+                            <img src="/assets/icons/arrow-turn-down-right.svg" draggable="false" />
+                            <span>Convert</span>
                         </button>
                     </div>
                 </section>
@@ -321,37 +335,50 @@ function Home() {
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                         >
-                            <h3>Results</h3>
-                            <br />
+                            {/* <h3>Results</h3>
+                            <br /> */}
 
                             <div>
                                 <div className="results-row">
                                     <div className="labeled-input">
                                         <p>{fromBase ? labelMap[fromBase] : ""}</p>
-                                        <h1>{fromValue}</h1>
+                                        <motion.h1
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 20 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                                        >
+                                            {fromValue}
+                                        </motion.h1>
                                     </div>
                                     <div className="labeled-input">
                                         <p>{toBase ? labelMap[toBase] : ""}</p>
-                                        <h1>{result}</h1>
+                                        <motion.h1
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 20 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+                                        >
+                                            {result}
+                                        </motion.h1>
                                     </div>
                                 </div>
-                                <br />
+                                <br /><br />
                                 
-                                <p>Formula:</p>
-                                <br />
+                                <p className="p-600">Formula</p>
                                 <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
-                                <br />
+                                <br /><br />
 
-                                <p>Explained:</p>
+                                <p className="p-600">Explained</p>
                                 <p dangerouslySetInnerHTML={{ __html: description || "" }} />
+                                <br /><br />
+
+                                <p>Other result 1{otherResult1Label ? ` (${otherResult1Label})` : ""}</p>
+                                <h1>{otherResult1}</h1>
                                 <br />
 
-                                <p>Other result 1{otherResult1Label ? ` (${otherResult1Label})` : ""}:</p>
-                                <p>{otherResult1}</p>
-                                <br />
-
-                                <p>Other result 2{otherResult2Label ? ` (${otherResult2Label})` : ""}:</p>
-                                <p>{otherResult2}</p>
+                                <p>Other result 2{otherResult2Label ? ` (${otherResult2Label})` : ""}</p>
+                                <h1>{otherResult2}</h1>
                             </div>
                         </motion.section>
                     )}

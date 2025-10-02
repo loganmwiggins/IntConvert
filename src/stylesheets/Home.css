@@ -9,6 +9,7 @@ section {
     flex: 1;
     overflow-x: hidden;
     min-width: 0;
+    padding: .25rem;
 }
 
 .calculation-section {

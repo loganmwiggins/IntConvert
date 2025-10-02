@@ -5,7 +5,10 @@ import '../stylesheets/ss-components/Header.css';
 function Header() {
     return (
         <div className="header">
-            <h2>IntConvert</h2>
+            <div className="header-title">
+                <img src="/assets/icons/logo-v2.png" draggable="false" />
+                <h2>IntConvert</h2>
+            </div>
         </div>
     );
 }

@@ -34,7 +34,12 @@
     --shadow-4: rgba(0, 0, 0, .5);
     --modal-overlay: rgba(0, 0, 0, .75);
 
+    /* Button styles */
+    --btn-primary-bg: rgba(250, 55, 104, .25);
+    --btn-primary-color: rgba(250, 55, 104, 1);
+
     /* Accent colors */
+    --accent-original: #fa3768;
     --accent-purple: #807dc5;
     --accent-purple-light: #b2afec;
     --black: #111;

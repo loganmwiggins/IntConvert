@@ -244,6 +244,7 @@ function Home() {
         setDescription(null);
         setOtherResult1(null);
         setOtherResult2(null);
+        setInputError(null);
     };
 
     const handleSwap = () => {
@@ -292,9 +293,20 @@ function Home() {
                                     onChange={handleInputChange}
                                     disabled={!fromBase}
                                 />
-                                {inputError && (
-                                    <label className="error">{inputError}</label>
-                                )}
+                                <AnimatePresence>
+                                    {inputError && (
+                                        <motion.label 
+                                            className="error"
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            transition={{ duration: 0.2, ease: "easeInOut" }}
+                                        >
+                                            {inputError}
+                                        </motion.label>
+                                    )}
+                                </AnimatePresence>
+                                
                             </div>
 
                             <div className="button-row">
@@ -344,65 +356,97 @@ function Home() {
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                         >
-                            <Card header="Result">
-                                <div className="results-row">
-                                    <div className="labeled-result">
-                                        <motion.h1
-                                            key={fromValue}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 20 }}
-                                            transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
-                                        >
-                                            {fromValue}
-                                        </motion.h1>
-                                        <label className="label-colored">{fromBase ? labelMap[fromBase] : ""}</label>
+                            {/* Result card */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                            >
+                                <Card header="Result">
+                                    <div className="results-row">
+                                        <div className="labeled-result">
+                                            <motion.h1
+                                                key={fromValue}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 20 }}
+                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                                            >
+                                                {fromValue}
+                                            </motion.h1>
+                                            <label className="label-colored">{fromBase ? labelMap[fromBase] : ""}</label>
+                                        </div>
+                                        <div>
+                                            <motion.h1
+                                                initial={{ opacity: 0, x: -40 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                exit={{ opacity: 0, x: -40 }}
+                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+                                            >
+                                                →
+                                            </motion.h1>
+                                        </div>
+                                        <div className="labeled-result">
+                                            <motion.h1
+                                                key={result}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 20 }}
+                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
+                                            >
+                                                {result}
+                                            </motion.h1>
+                                            <label className="label-colored">{toBase ? labelMap[toBase] : ""}</label>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <motion.h1
-                                            initial={{ opacity: 0, x: -40 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            exit={{ opacity: 0, x: -40 }}
-                                            transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
-                                        >
-                                            →
-                                        </motion.h1>
-                                    </div>
-                                    <div className="labeled-result">
-                                        <motion.h1
-                                            key={result}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 20 }}
-                                            transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
-                                        >
-                                            {result}
-                                        </motion.h1>
-                                        <label className="label-colored">{toBase ? labelMap[toBase] : ""}</label>
-                                    </div>
-                                </div>
-                            </Card>
+                                </Card>
+                            </motion.div>
+
+                            {/* Formula card */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+                            >
+                                <Card header="Formula">
+                                    <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
+                                </Card>
+                            </motion.div>
                             
-                            <Card header="Formula">
-                                <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
-                            </Card>
+                            {/* Explained card */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
+                            >
+                                <Card header="Explained">
+                                    <p dangerouslySetInnerHTML={{ __html: description || "" }} />
+                                </Card>
+                            </motion.div>
 
-                            <Card header="Explained">
-                                <p dangerouslySetInnerHTML={{ __html: description || "" }} />
-                            </Card>
-
-                            <Card header="Other Results">
-                                <div className="results-row">
-                                    <div className="labeled-result">
-                                        <h1>{otherResult1}</h1>
-                                        <label className="label-colored">{otherResult1Label ? otherResult1Label : ""}</label>
+                            {/* Other Results card */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: 20 }}
+                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.4 }}
+                            >
+                                <Card header="Other Results">
+                                    <div className="results-row">
+                                        <div className="labeled-result">
+                                            <h1>{otherResult1}</h1>
+                                            <label className="label-colored">{otherResult1Label ? otherResult1Label : ""}</label>
+                                        </div>
+                                        <div className="labeled-result">
+                                            <h1>{otherResult2}</h1>
+                                            <label className="label-colored">{otherResult2Label ? otherResult2Label : ""}</label>
+                                        </div>
                                     </div>
-                                    <div className="labeled-result">
-                                        <h1>{otherResult2}</h1>
-                                        <label className="label-colored">{otherResult2Label ? otherResult2Label : ""}</label>
-                                    </div>
-                                </div>
-                            </Card>
+                                </Card>
+                            </motion.div>
                         </motion.section>
                     )}
                 </AnimatePresence>

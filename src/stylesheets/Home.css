@@ -1,6 +1,6 @@
 .home-layout {
     display: flex;
-    gap: 4rem;
+    gap: 2rem;
     height: 100%;
     /* background: lightblue; */
 }
@@ -12,9 +12,21 @@ section {
     padding: .25rem;
 }
 
+.conversion-div {
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow-modal);
+    border-radius: 1rem;
+}
+
 .calculation-section {
     overflow-y: scroll;
     max-height: 600px;
+}
+
+.calculation-div {
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow-modal);
+    border-radius: 1rem;
 }
 
 .results-row {

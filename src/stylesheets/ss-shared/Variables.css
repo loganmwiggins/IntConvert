@@ -36,6 +36,7 @@
     --modal-overlay: rgba(0, 0, 0, .75);
 
     --label-bg: rgba(250, 55, 104, .25);
+    --label-bg-light: rgba(250, 55, 104, .15);
     --label-color: rgba(250, 55, 104, 1);
 
     --scrollbar-thumb: rgb(235, 235, 235);

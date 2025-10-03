@@ -11,6 +11,7 @@ section {
     padding: .25rem 1rem;
 }
 
+.conversion-section,
 .calculation-section {
     display: flex;
     flex-direction: column;
@@ -25,7 +26,6 @@ section {
     background: var(--scrollbar-thumb);
     border-radius: 2px;
 }
-
 
 .results-row {
     display: flex;

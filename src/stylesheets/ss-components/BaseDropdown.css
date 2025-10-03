@@ -19,7 +19,7 @@
     cursor: pointer;
     transition: background .25s ease, border-color .25s ease;
 }
-.bd-btn:hover { border-color: var(--accent-color); }
+/* .bd-btn:hover { border-color: var(--accent-color); } */
 
 .bd-btn.bd-placeholder { opacity: .8; }
 
@@ -54,10 +54,10 @@
     cursor: pointer;
 }
 
-.bd-item--highlight { background: var(--label-bg); }
+.bd-item--highlight { background: var(--label-bg-light); }
 .bd-item--selected {
     background: var(--label-bg);
-    outline: 2px solid var(--label-color);
+    outline: 1.5px solid var(--label-color);
 }
 
 .bd-item-label { font-weight: 600; }

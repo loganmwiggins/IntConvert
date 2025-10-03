@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
-import '../stylesheets/ss-components/Layout.css';
 import Header from './Header';
+import '../stylesheets/ss-components/Layout.css';
 
 function Layout() {
     const location = useLocation();
@@ -16,7 +16,9 @@ function Layout() {
             <div className="app-container">
                 <div className="app-window">
                     <Header />
-                    <Outlet />
+                    <div className="main-content">
+                        <Outlet />
+                    </div>
                 </div>
             </div>
         </div>

@@ -28,6 +28,7 @@
     --shadow-modal: 0 0 .5rem rgb(215, 215, 215);
     --shadow-select: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 11px rgba(0, 0, 0, 0.1);
     --shadow-button: 0 0 .25rem rgba(0, 0, 0, .25);
+    --shadow-card: 0 0 .25rem rgb(181, 181, 181);
     --shadow-1: rgba(0, 0, 0, .05);
     --shadow-2: rgba(0, 0, 0, .15);
     --shadow-3: rgba(0, 0, 0, .25);

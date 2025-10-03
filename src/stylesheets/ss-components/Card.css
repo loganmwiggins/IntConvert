@@ -1,0 +1,15 @@
+.card {
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow-card);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}

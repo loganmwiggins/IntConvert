@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import ConversionSection from '../components/ConversionSection';
 import CalculationSection from '../components/CalculationSection';
+import Card from '../components/Card';
 import BaseDropdown from '../components/BaseDropdown';
 import {
     binToDec, octToDec, hexToDec,
@@ -261,7 +262,7 @@ function Home() {
             <div className="home-layout">
                 {/* CONVERSION SECTION */}
                 <section className="conversion-section">
-                    <div className="conversion-div">
+                    <div className="card">
                         <div className="input-row">
                             <div className="labeled-input">
                                 <p>Convert from</p>
@@ -337,73 +338,65 @@ function Home() {
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                         >
-                            <div>
-                                <div className="calculation-div">
-                                    <p className="p-600">Result</p>
-                                    <div className="results-row">
-                                        <div className="labeled-input">
-                                            <motion.h1
-                                                key={fromValue}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 20 }}
-                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
-                                            >
-                                                {fromValue}
-                                            </motion.h1>
-                                            <p>{fromBase ? labelMap[fromBase] : ""}</p>
-                                        </div>
-                                        <div>
-                                            <motion.h1
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 20 }}
-                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
-                                            >
-                                                →
-                                            </motion.h1>
-                                        </div>
-                                        <div className="labeled-input">
-                                            <motion.h1
-                                                key={result}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 20 }}
-                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
-                                            >
-                                                {result}
-                                            </motion.h1>
-                                            <p>{toBase ? labelMap[toBase] : ""}</p>
-                                        </div>
+                            <Card header="Result">
+                                <div className="results-row">
+                                    <div className="labeled-input">
+                                        <motion.h1
+                                            key={fromValue}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 20 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                                        >
+                                            {fromValue}
+                                        </motion.h1>
+                                        <p>{fromBase ? labelMap[fromBase] : ""}</p>
+                                    </div>
+                                    <div>
+                                        <motion.h1
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 20 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+                                        >
+                                            →
+                                        </motion.h1>
+                                    </div>
+                                    <div className="labeled-input">
+                                        <motion.h1
+                                            key={result}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 20 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
+                                        >
+                                            {result}
+                                        </motion.h1>
+                                        <p>{toBase ? labelMap[toBase] : ""}</p>
                                     </div>
                                 </div>
-                                <br />
-                                
-                                <div className="calculation-div">
-                                    <p className="p-600">Formula</p>
-                                    <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
-                                </div>
-                                <br />
+                            </Card>
+                            
+                            <Card header="Formula">
+                                <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
+                            </Card>
 
-                                <div className="calculation-div">
-                                    <p className="p-600">Explained</p>
-                                    <p dangerouslySetInnerHTML={{ __html: description || "" }} />
-                                </div>
-                                <br />
+                            <Card header="Explained">
+                                <p dangerouslySetInnerHTML={{ __html: description || "" }} />
+                            </Card>
 
-                                <div className="calculation-div">
-                                    <div className="results-row">
-                                        <div className="labeled-input">
-                                            <p>Other result 1{otherResult1Label ? ` (${otherResult1Label})` : ""}</p>
-                                            <h1>{otherResult1}</h1>
-                                        </div>
-                                        <div className="labeled-input">
-                                            <p>Other result 2{otherResult2Label ? ` (${otherResult2Label})` : ""}</p>
-                                            <h1>{otherResult2}</h1>
-                                        </div>
+                            <Card header="Other Results">
+                                <div className="results-row">
+                                    <div className="labeled-input">
+                                        <h1>{otherResult1}</h1>
+                                        <p>{otherResult1Label ? otherResult1Label : ""}</p>
+                                    </div>
+                                    <div className="labeled-input">
+                                        <h1>{otherResult2}</h1>
+                                        <p>{otherResult2Label ? otherResult2Label : ""}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </Card>
                         </motion.section>
                     )}
                 </AnimatePresence>

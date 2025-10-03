@@ -340,7 +340,7 @@ function Home() {
                         >
                             <Card header="Result">
                                 <div className="results-row">
-                                    <div className="labeled-input">
+                                    <div className="labeled-result">
                                         <motion.h1
                                             key={fromValue}
                                             initial={{ opacity: 0, y: 20 }}
@@ -362,7 +362,7 @@ function Home() {
                                             →
                                         </motion.h1>
                                     </div>
-                                    <div className="labeled-input">
+                                    <div className="labeled-result">
                                         <motion.h1
                                             key={result}
                                             initial={{ opacity: 0, y: 20 }}
@@ -387,11 +387,11 @@ function Home() {
 
                             <Card header="Other Results">
                                 <div className="results-row">
-                                    <div className="labeled-input">
+                                    <div className="labeled-result">
                                         <h1>{otherResult1}</h1>
                                         <p>{otherResult1Label ? otherResult1Label : ""}</p>
                                     </div>
-                                    <div className="labeled-input">
+                                    <div className="labeled-result">
                                         <h1>{otherResult2}</h1>
                                         <p>{otherResult2Label ? otherResult2Label : ""}</p>
                                     </div>

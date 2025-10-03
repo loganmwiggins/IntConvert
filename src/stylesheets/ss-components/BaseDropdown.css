@@ -1,6 +1,7 @@
 .bd-root { 
     position: relative; 
-    width: 260px; 
+    /* width: 260px;  */
+    flex: 1;
 }
 
 .bd-btn {

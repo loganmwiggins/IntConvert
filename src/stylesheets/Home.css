@@ -24,3 +24,9 @@ section {
     align-items: start;
     gap: 4rem;
 }
+
+.labeled-result {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}

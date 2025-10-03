@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import '../stylesheets/ss-components/BaseDropdown.css';
 
 const BASES = [
@@ -78,36 +79,55 @@ function BaseDropdown({ value, onSelect, exclude }) {
                 onKeyDown={onKeyDown}
             >
                 {buttonLabel}
-                <span className="bd-caret" aria-hidden>▾</span>
+                <span
+                    className="bd-caret"
+                    aria-hidden
+                    style={{
+                        display: 'inline-block',
+                        transition: 'transform 0.25s cubic-bezier(.4,2,.6,1)',
+                        transform: open ? 'rotate(90deg)' : 'rotate(0deg)'
+                    }}
+                >
+                    {/* Angle right SVG */}
+                    <svg width="1em" height="1em" viewBox="0 0 20 20" style={{ verticalAlign: 'middle' }}>
+                        <polyline points="7 5 13 10 7 15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                </span>
             </button>
 
-            {open && (
-                <ul
-                    className="bd-menu"
-                    role="listbox"
-                    tabIndex={-1}
-                    onKeyDown={onKeyDown}
-                >
-                    {items.map((item, idx) => {
-                        const isSelected = value === item.value;
-                        const isHighlight = highlight === idx;
-                        
-                        return (
-                            <li
-                                key={item.value}
-                                role="option"
-                                aria-selected={isSelected}
-                                className={`bd-item ${isHighlight ? 'bd-item--highlight' : ''} ${isSelected ? 'bd-item--selected' : ''}`}
-                                onMouseEnter={() => setHighlight(idx)}
-                                onClick={() => { onSelect(item.value); setOpen(false); }}
-                            >
-                                <span className="bd-item-label">{item.label}</span>
-                                <span className="bd-item-detail">{item.detail}</span>
-                            </li>
-                        );
-                    })}
-                </ul>
-            )}
+            <AnimatePresence>
+                {open && (
+                    <motion.ul
+                        className="bd-menu"
+                        role="listbox"
+                        tabIndex={-1}
+                        onKeyDown={onKeyDown}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.18, ease: "easeInOut" }}
+                    >
+                        {items.map((item, idx) => {
+                            const isSelected = value === item.value;
+                            const isHighlight = highlight === idx;
+
+                            return (
+                                <li
+                                    key={item.value}
+                                    role="option"
+                                    aria-selected={isSelected}
+                                    className={`bd-item ${isHighlight ? 'bd-item--highlight' : ''} ${isSelected ? 'bd-item--selected' : ''}`}
+                                    onMouseEnter={() => setHighlight(idx)}
+                                    onClick={() => { onSelect(item.value); setOpen(false); }}
+                                >
+                                    <span className="bd-item-label">{item.label}</span>
+                                    <span className="bd-item-detail">{item.detail}</span>
+                                </li>
+                            );
+                        })}
+                    </motion.ul>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

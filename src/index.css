@@ -35,6 +35,14 @@ p, a, span { font-size: 1.75rem; }
 .p-xs { font-size: 1.25rem; }
 .p-600 { font-weight: 600; }
 
+.label-colored {
+    background: var(--label-bg);
+    color: var(--label-color);
+    padding: .25rem 1rem;
+    border-radius: 6rem;
+    max-width: fit-content;
+}
+
 /* Layout related */
 .page-wrapper {
     width: 100%;

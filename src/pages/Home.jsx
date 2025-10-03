@@ -263,68 +263,74 @@ function Home() {
                 {/* CONVERSION SECTION */}
                 <section className="conversion-section">
                     <div className="card">
-                        <div className="input-row">
-                            <div className="labeled-input">
-                                <p>Convert from</p>
-                                <BaseDropdown
-                                    value={fromBase}
-                                    onSelect={setFromBase}
-                                    exclude={toBase}
-                                />
+                        <div className="input-ctnr">
+                            <div className="input-row">
+                                <div className="labeled-input">
+                                    <p>Convert from</p>
+                                    <BaseDropdown
+                                        value={fromBase}
+                                        onSelect={setFromBase}
+                                        exclude={toBase}
+                                    />
+                                </div>
+                                <div className="labeled-input">
+                                    <p>Convert to</p>
+                                    <BaseDropdown
+                                        value={toBase}
+                                        onSelect={setToBase}
+                                        exclude={fromBase}
+                                    />
+                                </div>
                             </div>
+
                             <div className="labeled-input">
-                                <p>Convert to</p>
-                                <BaseDropdown
-                                    value={toBase}
-                                    onSelect={setToBase}
-                                    exclude={fromBase}
+                                <p>Enter value</p>
+                                {/* Use text to allow hex letters like A-F, matching original app */}
+                                <input
+                                    type="text"
+                                    value={fromValue ?? ""}
+                                    onChange={handleInputChange}
+                                    disabled={!fromBase}
                                 />
+                                {inputError && (
+                                    <label className="error">{inputError}</label>
+                                )}
+                            </div>
+
+                            <div className="button-row">
+                                <button 
+                                    className="btn-secondary"
+                                    style={{ flex: 1 }}
+                                    onClick={handleClear}
+                                >
+                                    <img src="/assets/icons/eraser.svg" draggable="false" />
+                                    <span>Clear</span>
+                                </button>
+                                <button 
+                                    className="btn-secondary"
+                                    style={{ flex: 1 }}
+                                    onClick={handleSwap}
+                                >
+                                    <img src="/assets/icons/shuffle.svg" draggable="false" />
+                                    <span>Swap</span>
+                                </button>
+                                <button 
+                                    className="btn-primary"
+                                    style={{ flex: 1 }}
+                                    disabled={
+                                        !fromBase ||
+                                        !toBase ||
+                                        !fromValue ||
+                                        !!inputError
+                                    }
+                                    onClick={runConvert}
+                                >
+                                    <img src="/assets/icons/arrow-turn-down-right.svg" draggable="false" />
+                                    <span>Convert</span>
+                                </button>
                             </div>
                         </div>
-
-                        <div className="labeled-input">
-                            <p>Enter value</p>
-                            {/* Use text to allow hex letters like A-F, matching original app */}
-                            <input
-                                type="text"
-                                value={fromValue ?? ""}
-                                onChange={handleInputChange}
-                                disabled={!fromBase}
-                            />
-                            {inputError && (
-                                <span style={{ color: "red", fontSize: "0.9em" }}>{inputError}</span>
-                            )}
-                        </div>
-
-                        <div className="button-row">
-                            <button 
-                                className="btn-secondary"
-                                onClick={handleClear}
-                            >
-                                <img src="/assets/icons/eraser.svg" draggable="false" />
-                                <span>Clear</span>
-                            </button>
-                            <button 
-                                className="btn-secondary"
-                                onClick={handleSwap}
-                            >
-                                <img src="/assets/icons/shuffle.svg" draggable="false" />
-                                <span>Swap</span>
-                            </button>
-                            <button 
-                                onClick={runConvert}
-                                disabled={
-                                    !fromBase ||
-                                    !toBase ||
-                                    !fromValue ||
-                                    !!inputError
-                                }
-                                className="btn-primary"
-                            >
-                                <img src="/assets/icons/arrow-turn-down-right.svg" draggable="false" />
-                                <span>Convert</span>
-                            </button>
-                        </div>
+                        
                     </div>
                 </section>
 
@@ -350,13 +356,13 @@ function Home() {
                                         >
                                             {fromValue}
                                         </motion.h1>
-                                        <p>{fromBase ? labelMap[fromBase] : ""}</p>
+                                        <label className="label-colored">{fromBase ? labelMap[fromBase] : ""}</label>
                                     </div>
                                     <div>
                                         <motion.h1
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 20 }}
+                                            initial={{ opacity: 0, x: -40 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: -40 }}
                                             transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
                                         >
                                             →
@@ -372,7 +378,7 @@ function Home() {
                                         >
                                             {result}
                                         </motion.h1>
-                                        <p>{toBase ? labelMap[toBase] : ""}</p>
+                                        <label className="label-colored">{toBase ? labelMap[toBase] : ""}</label>
                                     </div>
                                 </div>
                             </Card>
@@ -389,18 +395,17 @@ function Home() {
                                 <div className="results-row">
                                     <div className="labeled-result">
                                         <h1>{otherResult1}</h1>
-                                        <p>{otherResult1Label ? otherResult1Label : ""}</p>
+                                        <label className="label-colored">{otherResult1Label ? otherResult1Label : ""}</label>
                                     </div>
                                     <div className="labeled-result">
                                         <h1>{otherResult2}</h1>
-                                        <p>{otherResult2Label ? otherResult2Label : ""}</p>
+                                        <label className="label-colored">{otherResult2Label ? otherResult2Label : ""}</label>
                                     </div>
                                 </div>
                             </Card>
                         </motion.section>
                     )}
                 </AnimatePresence>
-                
             </div>
         </div>
     );

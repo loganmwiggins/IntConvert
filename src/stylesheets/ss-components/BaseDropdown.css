@@ -13,7 +13,7 @@
     background: var(--bg-1);
     color: var(--text-1);
     border: 1px solid var(--border-input);
-    border-radius: 1rem;
+    border-radius: .75rem;
     padding: .75rem 1rem; 
     font-size: 1.6rem; 
     cursor: pointer;
@@ -54,8 +54,11 @@
     cursor: pointer;
 }
 
-.bd-item--highlight { background: var(--accent-purple-light); }
-.bd-item--selected { outline: 2px solid var(--accent-purple-light); }
+.bd-item--highlight { background: var(--label-bg); }
+.bd-item--selected {
+    background: var(--label-bg);
+    outline: 2px solid var(--label-color);
+}
 
 .bd-item-label { font-weight: 600; }
 

@@ -158,7 +158,7 @@ function getBaseRegex(base) {
 // Component
 // ---------------------------
 function Home() {
-    const [fromBase, setFromBase] = useState(null); // "bin"|"oct"|"dec"|"hex"
+    const [fromBase, setFromBase] = useState(null);
     const [toBase, setToBase] = useState(null);
     const [fromValue, setFromValue] = useState("");
     const [result, setResult] = useState(null);
@@ -238,6 +238,8 @@ function Home() {
     };
 
     const handleClear = () => {
+        setFromBase(null);
+        setToBase(null);
         setFromValue("");
         setResult(null);
         setCalculationHtml(null);
@@ -250,13 +252,14 @@ function Home() {
     const handleSwap = () => {
         setToBase(fromBase);
         setFromBase(toBase);
-        // mimic original UX: keep input as-is; clear outputs
         setResult(null);
         setCalculationHtml(null);
         setDescription(null);
         setOtherResult1(null);
         setOtherResult2(null);
+        setInputError(null);
     };
+
 
     return (
         <div className="page-wrapper">
@@ -291,7 +294,7 @@ function Home() {
                                     type="text"
                                     value={fromValue ?? ""}
                                     onChange={handleInputChange}
-                                    disabled={!fromBase}
+                                    disabled={!fromBase || !toBase}
                                 />
                                 <AnimatePresence>
                                     {inputError && (
@@ -322,6 +325,7 @@ function Home() {
                                     className="btn-secondary"
                                     style={{ flex: 1 }}
                                     onClick={handleSwap}
+                                    disabled={!fromBase && !toBase}
                                 >
                                     <img src="/assets/icons/shuffle.svg" draggable="false" />
                                     <span>Swap</span>

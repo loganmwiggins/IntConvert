@@ -46,7 +46,7 @@ button {
 
     img {
         width: 1.75rem;
-        opacity: 1;
+        /* opacity: 1; */
     }
 }
 
@@ -74,4 +74,17 @@ button {
         width: 2.25rem;
         opacity: 0.8;
     }
+}
+
+button:disabled,
+.btn-secondary:disabled,
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+button:disabled img,
+.btn-secondary:disabled img,
+.btn-primary:disabled img {
+    opacity: 0.5;
 }

@@ -9,7 +9,7 @@ const BASES = [
     { value: 'hex', label: 'Hexadecimal', detail: 'base 16' },
 ];
 
-function BaseDropdown({ value, onSelect, exclude }) {
+function BaseDropdown({ value, onSelect, exclude, onClear }) {
     const [open, setOpen] = useState(false);
     const [highlight, setHighlight] = useState(0);
     const rootRef = useRef(null);
@@ -79,20 +79,31 @@ function BaseDropdown({ value, onSelect, exclude }) {
                 onKeyDown={onKeyDown}
             >
                 {buttonLabel}
-                <span
-                    className="bd-caret"
-                    aria-hidden
-                    style={{
-                        display: 'inline-block',
-                        transition: 'transform 0.25s cubic-bezier(.4,2,.6,1)',
-                        transform: open ? 'rotate(90deg)' : 'rotate(0deg)'
-                    }}
-                >
-                    {/* Angle right SVG */}
-                    <svg width="1em" height="1em" viewBox="0 0 20 20" style={{ verticalAlign: 'middle' }}>
-                        <polyline points="7 5 13 10 7 15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                </span>
+
+                <div className="bd-btn-ctnr">
+                    {/* Clear button */}
+                    {selected && onClear && (
+                        <span
+                            className="bd-clear-btn"
+                            tabIndex={-1}
+                            onClick={e => {
+                                e.stopPropagation();
+                                onClear();
+                            }}
+                            title="Clear"
+                        >
+                            <img src="/assets/icons/cross-small.svg" draggable="false" />
+                        </span>
+                    )}
+                    {/* Toggle indicator */}
+                    <span
+                        className="bd-caret"
+                        aria-hidden
+                        style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }}
+                    >
+                        <img src="/assets/icons/angle-small-right.svg" draggable="false" />
+                    </span>
+                </div>
             </button>
 
             <AnimatePresence>

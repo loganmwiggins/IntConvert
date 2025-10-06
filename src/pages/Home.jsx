@@ -275,6 +275,7 @@ function Home() {
                                         value={fromBase}
                                         onSelect={setFromBase}
                                         exclude={toBase}
+                                        onClear={() => setFromBase(null)}
                                     />
                                 </div>
                                 <div className="labeled-input">
@@ -283,19 +284,31 @@ function Home() {
                                         value={toBase}
                                         onSelect={setToBase}
                                         exclude={fromBase}
+                                        onClear={() => setToBase(null)}
                                     />
                                 </div>
                             </div>
 
-                            <div className="labeled-input">
+                            <div className="labeled-input" style={{ position: "relative" }}>
                                 <p>Enter value</p>
-                                {/* Use text to allow hex letters like A-F, matching original app */}
                                 <input
                                     type="text"
                                     value={fromValue ?? ""}
                                     onChange={handleInputChange}
                                     disabled={!fromBase || !toBase}
+                                    style={{ paddingRight: "2.5rem" }}
                                 />
+                                {fromValue && (
+                                    <button
+                                        type="button"
+                                        className="input-clear-btn"
+                                        onClick={() => setFromValue("")}
+                                        tabIndex={-1}
+                                        aria-label="Clear input"
+                                    >
+                                        <img src="/assets/icons/cross-small.svg" draggable="false" />
+                                    </button>
+                                )}
                                 <AnimatePresence>
                                     {inputError && (
                                         <motion.label 
@@ -309,7 +322,6 @@ function Home() {
                                         </motion.label>
                                     )}
                                 </AnimatePresence>
-                                
                             </div>
 
                             <div className="button-row">
@@ -317,6 +329,7 @@ function Home() {
                                     className="btn-secondary"
                                     style={{ flex: 1 }}
                                     onClick={handleClear}
+                                    disabled={!fromBase && !toBase}
                                 >
                                     <img src="/assets/icons/eraser.svg" draggable="false" />
                                     <span>Clear</span>

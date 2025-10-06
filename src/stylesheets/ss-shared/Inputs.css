@@ -88,3 +88,27 @@ button:disabled img,
 .btn-primary:disabled img {
     opacity: 0.5;
 }
+
+.input-clear-btn {
+    position: absolute;
+    right: 1rem;
+    top: 3.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.15s;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+        vertical-align: middle;
+    }
+}
+
+.input-clear-btn:hover {
+    opacity: 1;
+}

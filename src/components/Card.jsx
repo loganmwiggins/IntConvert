@@ -2,25 +2,36 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../stylesheets/ss-components/Card.css';
 
-function Card({ header, children }) {
+function Card({ header, canCollapse = true, children }) {
     const [collapsed, setCollapsed] = useState(false);
+
+    // Only allow click to toggle if canCollapse is true
+    const handleHeaderClick = () => {
+        if (canCollapse) setCollapsed(c => !c);
+    };
 
     return (
         <div className="card">
-            <div className="card-header" onClick={() => setCollapsed(c => !c)}>
+            <div
+                className="card-header"
+                onClick={handleHeaderClick}
+                style={{ cursor: canCollapse ? "pointer" : "default" }}
+            >
                 <p className="p-600">{header}</p>
-                <motion.button
-                    className="btn-icon"
-                    aria-label={collapsed ? "Expand" : "Collapse"}
-                    title={collapsed ? "Expand" : "Collapse"}
-                >
-                    <motion.img
-                        src="/assets/icons/angle-small-down.svg"
-                        draggable="false"
-                        animate={{ rotate: collapsed ? 0 : 180 }}
-                        transition={{ duration: 0.25 }}
-                    />
-                </motion.button>
+                {canCollapse && (
+                    <motion.button
+                        className="btn-icon"
+                        aria-label={collapsed ? "Expand" : "Collapse"}
+                        title={collapsed ? "Expand" : "Collapse"}
+                    >
+                        <motion.img
+                            src="/assets/icons/angle-small-down.svg"
+                            draggable="false"
+                            animate={{ rotate: collapsed ? 0 : 180 }}
+                            transition={{ duration: 0.25 }}
+                        />
+                    </motion.button>
+                )}
             </div>
 
             <AnimatePresence initial={false}>

@@ -229,6 +229,11 @@ function Home() {
 
         setResult(out);
 
+        // Store the "last converted" values
+        setResultFromBase(fromBase);
+        setResultToBase(toBase);
+        setResultFromValue(fromValue);
+
         // 2) About this Conversion (copied strings)
         setAboutFromTo(from, to, setDescription);
 
@@ -380,7 +385,7 @@ function Home() {
 
                 {/* CALCULATION SECTION */}
                 <AnimatePresence>
-                    {result !== null && (
+                    {result && (
                         <motion.section 
                             className="calculation-section"
                             initial={{ opacity: 0, x: 20 }}
@@ -399,15 +404,15 @@ function Home() {
                                     <div className="results-row">
                                         <div className="labeled-result">
                                             <motion.h1
-                                                key={fromValue}
+                                                key={resultFromValue}
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: 20 }}
                                                 transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
                                             >
-                                                {fromValue}
+                                                {resultFromValue}
                                             </motion.h1>
-                                            <label className="label-colored">{fromBase ? labelMap[fromBase] : ""}</label>
+                                            <label className="label-colored">{resultFromBase ? labelMap[resultFromBase] : ""}</label>
                                         </div>
                                         <div>
                                             <motion.h1
@@ -429,7 +434,7 @@ function Home() {
                                             >
                                                 {result}
                                             </motion.h1>
-                                            <label className="label-colored">{toBase ? labelMap[toBase] : ""}</label>
+                                            <label className="label-colored">{resultToBase ? labelMap[resultToBase] : ""}</label>
                                         </div>
                                     </div>
                                 </Card>

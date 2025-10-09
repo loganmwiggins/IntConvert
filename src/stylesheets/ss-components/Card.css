@@ -12,3 +12,20 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.card-content {
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.card-content::-webkit-scrollbar {
+    height: 8px;
+}
+.card-content::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 2px;
+}
+
+.card-content.has-scrollbar {
+    padding-bottom: 1rem;
+}

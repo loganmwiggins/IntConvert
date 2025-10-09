@@ -400,41 +400,50 @@ function Home() {
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
                             >
-                                <Card header="Result">
+                                <Card 
+                                    key={`${resultFromValue}-${result}-${resultFromBase}-${resultToBase}`}
+                                    header="Result"
+                                >
                                     <div className="results-row">
                                         <div className="labeled-result">
-                                            <motion.h1
-                                                key={resultFromValue}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 20 }}
-                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
-                                            >
-                                                {resultFromValue}
-                                            </motion.h1>
+                                            <AnimatePresence mode="wait">
+                                                <motion.h1
+                                                    key={resultFromValue}
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 20 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                                                >
+                                                    {resultFromValue}
+                                                </motion.h1>
+                                            </AnimatePresence>
                                             <label className="label-colored">{resultFromBase ? labelMap[resultFromBase] : ""}</label>
                                         </div>
                                         <div>
-                                            <motion.h1
-                                                key={result}
-                                                initial={{ opacity: 0, x: -40 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                exit={{ opacity: 0, x: -40 }}
-                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
-                                            >
-                                                →
-                                            </motion.h1>
+                                            <AnimatePresence mode="wait">
+                                                <motion.h1
+                                                    key={result}
+                                                    initial={{ opacity: 0, x: -40 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    exit={{ opacity: 0, x: -40 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+                                                >
+                                                    →
+                                                </motion.h1>
+                                            </AnimatePresence>
                                         </div>
                                         <div className="labeled-result">
-                                            <motion.h1
-                                                key={result}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 20 }}
-                                                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
-                                            >
-                                                {result}
-                                            </motion.h1>
+                                            <AnimatePresence mode="wait">
+                                                <motion.h1
+                                                    key={result}
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 20 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
+                                                >
+                                                    {result}
+                                                </motion.h1>
+                                            </AnimatePresence>
                                             <label className="label-colored">{resultToBase ? labelMap[resultToBase] : ""}</label>
                                         </div>
                                     </div>
@@ -448,7 +457,10 @@ function Home() {
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
                             >
-                                <Card header="Formula">
+                                <Card 
+                                    key={`${resultFromValue}-${result}-${resultFromBase}-${resultToBase}`}
+                                    header="Formula"
+                                >
                                     <p dangerouslySetInnerHTML={{ __html: calculationHtml || "" }} />
                                 </Card>
                             </motion.div>
@@ -460,7 +472,10 @@ function Home() {
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
                             >
-                                <Card header="Explained">
+                                <Card 
+                                    key={`${resultFromValue}-${result}-${resultFromBase}-${resultToBase}`}
+                                    header="Explained"
+                                >
                                     <p dangerouslySetInnerHTML={{ __html: description || "" }} />
                                 </Card>
                             </motion.div>
@@ -472,7 +487,10 @@ function Home() {
                                 exit={{ opacity: 0, x: 20 }}
                                 transition={{ duration: 0.3, ease: "easeInOut", delay: 0.4 }}
                             >
-                                <Card header="Other Results">
+                                <Card 
+                                    key={`${resultFromValue}-${result}-${resultFromBase}-${resultToBase}`}
+                                    header="Other Results"
+                                >
                                     <div className="results-row">
                                         <div className="labeled-result">
                                             <h1>{otherResult1}</h1>

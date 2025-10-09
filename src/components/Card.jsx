@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../stylesheets/ss-components/Card.css';
 
-function Card({ header, canCollapse = true, children }) {
+function Card({ contentKey, header, canCollapse = true, children }) {
     const [collapsed, setCollapsed] = useState(false);
     const [hasScrollbar, setHasScrollbar] = useState(false);
     const contentRef = useRef(null);
@@ -12,7 +12,7 @@ function Card({ header, canCollapse = true, children }) {
         if (el) {
             setHasScrollbar(el.scrollWidth > el.clientWidth);
         }
-    }, [children, collapsed]);
+    }, [children, collapsed, contentKey]);
 
     // Only allow click to toggle if canCollapse is true
     const handleHeaderClick = () => {

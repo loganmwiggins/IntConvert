@@ -162,6 +162,9 @@ function Home() {
     const [toBase, setToBase] = useState(null);
     const [fromValue, setFromValue] = useState("");
     const [result, setResult] = useState(null);
+    const [resultFromBase, setResultFromBase] = useState(null);
+    const [resultToBase, setResultToBase] = useState(null);
+    const [resultFromValue, setResultFromValue] = useState(null);
     const [calculationHtml, setCalculationHtml] = useState(null);
     const [description, setDescription] = useState(null);
     const [otherResult1, setOtherResult1] = useState(null);
@@ -252,6 +255,7 @@ function Home() {
     const handleSwap = () => {
         setToBase(fromBase);
         setFromBase(toBase);
+        setFromValue("");
         setResult(null);
         setCalculationHtml(null);
         setDescription(null);
@@ -297,6 +301,17 @@ function Home() {
                                     onChange={handleInputChange}
                                     disabled={!fromBase || !toBase}
                                     style={{ paddingRight: "2.5rem" }}
+                                    onKeyDown={e => {
+                                        if (
+                                            e.key === "Enter" &&
+                                            fromBase &&
+                                            toBase &&
+                                            fromValue &&
+                                            !inputError
+                                        ) {
+                                            runConvert();
+                                        }
+                                    }}
                                 />
                                 {fromValue && (
                                     <button

@@ -409,15 +409,23 @@ function Home() {
                                             <AnimatePresence mode="wait">
                                                 <motion.h1
                                                     key={resultFromValue}
-                                                    initial={{ opacity: 0, y: 20 }}
+                                                    initial={{ opacity: 0, y: 30 }}
                                                     animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0, y: 20 }}
+                                                    exit={{ opacity: 0, y: 30 }}
                                                     transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
                                                 >
                                                     {resultFromValue}
                                                 </motion.h1>
+                                                <motion.label 
+                                                    className="label-colored"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 10 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                                                >
+                                                    {resultFromBase ? labelMap[resultFromBase] : ""}
+                                                </motion.label>
                                             </AnimatePresence>
-                                            <label className="label-colored">{resultFromBase ? labelMap[resultFromBase] : ""}</label>
                                         </div>
                                         <div>
                                             <AnimatePresence mode="wait">
@@ -436,15 +444,23 @@ function Home() {
                                             <AnimatePresence mode="wait">
                                                 <motion.h1
                                                     key={result}
-                                                    initial={{ opacity: 0, y: 20 }}
+                                                    initial={{ opacity: 0, y: 30 }}
                                                     animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0, y: 20 }}
+                                                    exit={{ opacity: 0, y: 30 }}
                                                     transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
                                                 >
                                                     {result}
                                                 </motion.h1>
+                                                <motion.label 
+                                                    className="label-colored"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 10 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
+                                                >
+                                                    {resultToBase ? labelMap[resultToBase] : ""}
+                                                </motion.label>
                                             </AnimatePresence>
-                                            <label className="label-colored">{resultToBase ? labelMap[resultToBase] : ""}</label>
                                         </div>
                                     </div>
                                 </Card>
@@ -495,28 +511,44 @@ function Home() {
                                         <div className="labeled-result">
                                             <AnimatePresence mode="wait">
                                                 <motion.h1
-                                                    initial={{ opacity: 0, y: 20 }}
+                                                    initial={{ opacity: 0, y: 30 }}
                                                     animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0, y: 20 }}
+                                                    exit={{ opacity: 0, y: 30 }}
                                                     transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
                                                 >
                                                     {otherResult1}
                                                 </motion.h1>
+                                                <motion.label 
+                                                    className="label-colored"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 10 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                                                >
+                                                    {otherResult1Label ? otherResult1Label : ""}
+                                                </motion.label>
                                             </AnimatePresence>
-                                            <label className="label-colored">{otherResult1Label ? otherResult1Label : ""}</label>
                                         </div>
                                         <div className="labeled-result">
                                             <AnimatePresence mode="wait">
                                                 <motion.h1
-                                                    initial={{ opacity: 0, y: 20 }}
+                                                    initial={{ opacity: 0, y: 30 }}
                                                     animate={{ opacity: 1, y: 0 }}
-                                                    exit={{ opacity: 0, y: 20 }}
+                                                    exit={{ opacity: 0, y: 30 }}
                                                     transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
                                                 >
                                                     {otherResult2}
                                                 </motion.h1>
+                                                <motion.label 
+                                                    className="label-colored"
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 10 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+                                                >
+                                                    {otherResult2Label ? otherResult2Label : ""}
+                                                </motion.label>
                                             </AnimatePresence>
-                                            <label className="label-colored">{otherResult2Label ? otherResult2Label : ""}</label>
                                         </div>
                                     </div>
                                 </Card>

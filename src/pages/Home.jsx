@@ -493,11 +493,29 @@ function Home() {
                                 >
                                     <div className="results-row">
                                         <div className="labeled-result">
-                                            <h1>{otherResult1}</h1>
+                                            <AnimatePresence mode="wait">
+                                                <motion.h1
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 20 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                                                >
+                                                    {otherResult1}
+                                                </motion.h1>
+                                            </AnimatePresence>
                                             <label className="label-colored">{otherResult1Label ? otherResult1Label : ""}</label>
                                         </div>
                                         <div className="labeled-result">
-                                            <h1>{otherResult2}</h1>
+                                            <AnimatePresence mode="wait">
+                                                <motion.h1
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 20 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+                                                >
+                                                    {otherResult2}
+                                                </motion.h1>
+                                            </AnimatePresence>
                                             <label className="label-colored">{otherResult2Label ? otherResult2Label : ""}</label>
                                         </div>
                                     </div>

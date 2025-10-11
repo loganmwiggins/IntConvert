@@ -7,7 +7,9 @@
 /* DOM layout */
 html, body, #root {
     height: 100%;
-    background: #0a0a0a;
+    /* background: #0a0a0a; */
+    background: rgb(160, 153, 159);
+    /* background: rgb(86, 77, 81); */
 }
 
 #root { margin: 0 auto; }

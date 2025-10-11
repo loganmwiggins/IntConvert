@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
 
 import Home from './pages/Home';
 import Info from './pages/Info';
@@ -8,19 +9,21 @@ import Layout from './components/Layout';
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route element={<Layout />}>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/info" element={<Info />} />
-                    <Route path="/settings" element={<Settings />} />
-                </Route>
+        <ThemeProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<Layout />}>
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/info" element={<Info />} />
+                        <Route path="/settings" element={<Settings />} />
+                    </Route>
 
-                {/* Catch-all routes */}
-                <Route path="/" element={<Navigate to="/home" />} />
-                <Route path="*" element={<Navigate to="/home" />} />
-            </Routes>
-        </BrowserRouter>
+                    {/* Catch-all routes */}
+                    <Route path="/" element={<Navigate to="/home" />} />
+                    <Route path="*" element={<Navigate to="/home" />} />
+                </Routes>
+            </BrowserRouter>
+        </ThemeProvider>
     );
 }
 

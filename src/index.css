@@ -7,9 +7,7 @@
 /* DOM layout */
 html, body, #root {
     height: 100%;
-    /* background: #0a0a0a; */
-    background: rgb(160, 153, 159);
-    /* background: rgb(86, 77, 81); */
+    background: var(--bg-2);
 }
 
 #root { margin: 0 auto; }
@@ -113,6 +111,10 @@ p, a, span { font-size: 1.75rem; }
 .g-2 { gap: 2rem; }
 .g-3 { gap: 3rem; }
 .g-4 { gap: 4rem; }
+
+.icon-dynamic {
+    filter: var(--filter-icon);
+}
 
 
 

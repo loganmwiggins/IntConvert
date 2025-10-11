@@ -85,14 +85,18 @@ function BaseDropdown({ value, onSelect, exclude, onClear }) {
                     {selected && onClear && (
                         <span
                             className="bd-clear-btn"
+                            title="Clear"
                             tabIndex={-1}
                             onClick={e => {
                                 e.stopPropagation();
                                 onClear();
                             }}
-                            title="Clear"
                         >
-                            <img src="/assets/icons/cross-small.svg" draggable="false" />
+                            <img 
+                                src="/assets/icons/cross-small.svg"
+                                className="icon-dynamic"
+                                draggable="false" 
+                            />
                         </span>
                     )}
                     {/* Toggle indicator */}
@@ -101,7 +105,11 @@ function BaseDropdown({ value, onSelect, exclude, onClear }) {
                         aria-hidden
                         style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)' }}
                     >
-                        <img src="/assets/icons/angle-small-right.svg" draggable="false" />
+                        <img 
+                            src="/assets/icons/angle-small-right.svg" 
+                            className="icon-dynamic"
+                            draggable="false"
+                        />
                     </span>
                 </div>
             </button>

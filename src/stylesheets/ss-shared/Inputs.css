@@ -18,10 +18,12 @@
 }
 
 input, select {
-    padding: .75rem;
+    background: var(--bg-1);
+    color: var(--text-1);
     border: 1px solid var(--border-input);
     border-radius: .75rem;
     font-size: 1.75rem;
+    padding: .75rem;
 }
 
 .error {
@@ -51,8 +53,8 @@ button {
 }
 
 .btn-primary {
-    background: var(--text-1);
-    color: var(--bg-1);
+    background: var(--button-primary-bg);
+    color: white;
 
     img {
         filter: invert(1);
@@ -61,8 +63,8 @@ button {
 }
 
 .btn-secondary {
-    background: var(--bg-4);
-    /* box-shadow: var(--shadow-button); */
+    background: var(--button-secondary-bg);
+    color: var(--text-1);
 }
 
 .btn-icon {
@@ -83,6 +85,7 @@ button {
 }
 
 .btn-menu {
+    background: var(--button-secondary-bg);
     width: 4rem;
     height: 4rem;
     border-radius: 100%;

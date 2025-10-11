@@ -53,13 +53,13 @@ function Header() {
             </div>
             <div className="header-btns">
                 <motion.button className="btn-icon" onClick={handleHomeClick} whileTap={{ scale: 0.9 }}>
-                    <img src="/assets/icons/calculator.svg" draggable="false" />
+                    <img src="/assets/icons/calculator.svg" className="icon-dynamic" draggable="false" />
                 </motion.button>
                 <motion.button className="btn-icon" onClick={handleSettingsClick} whileTap={{ scale: 0.9 }}>
-                    <img src="/assets/icons/settings-sliders.svg" draggable="false" />
+                    <img src="/assets/icons/settings-sliders.svg" className="icon-dynamic" draggable="false" />
                 </motion.button>
                 <motion.button className="btn-icon" onClick={handleInfoClick} whileTap={{ scale: 0.9 }}>
-                    <img src="/assets/icons/info.svg" draggable="false" />
+                    <img src="/assets/icons/info.svg" className="icon-dynamic" draggable="false" />
                 </motion.button>
             </div>
         </div>

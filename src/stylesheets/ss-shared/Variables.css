@@ -35,6 +35,9 @@
     --shadow-4: rgba(0, 0, 0, .5);
     --modal-overlay: rgba(0, 0, 0, .75);
 
+    --button-primary-bg: rgb(17, 17, 17);
+    --button-secondary-bg: rgb(235, 235, 235);
+
     --label-bg: rgba(250, 55, 104, .25);
     --label-bg-light: rgba(250, 55, 104, .15);
     --label-color: rgba(250, 55, 104, 1);
@@ -99,6 +102,8 @@
     --shadow-4: rgba(255, 255, 255, .5);
     --modal-overlay: rgba(255, 255, 255, .9);
 
+    --button-primary-bg: rgb(9, 9, 9);
+    --button-secondary-bg: rgb(41, 44, 45);
     /* Accent colors */
     --black: #000;
 

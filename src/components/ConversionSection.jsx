@@ -159,7 +159,11 @@ function ConversionSection({ onConvert, onClear }) {
                                 tabIndex={-1}
                                 title="Clear value"
                             >
-                                <img src="/assets/icons/cross-small.svg" draggable="false" />
+                                <img 
+                                    src="/assets/icons/cross-small.svg" 
+                                    className="icon-dynamic"
+                                    draggable="false" 
+                                />
                             </button>
                         )}
                         <AnimatePresence>
@@ -185,7 +189,11 @@ function ConversionSection({ onConvert, onClear }) {
                             onClick={handleClear}
                             disabled={!fromBase && !toBase}
                         >
-                            <img src="/assets/icons/eraser.svg" draggable="false" />
+                            <img 
+                                src="/assets/icons/eraser.svg" 
+                                className="icon-dynamic"
+                                draggable="false"
+                            />
                             <span>Clear</span>
                         </button>
                         <button 
@@ -195,7 +203,11 @@ function ConversionSection({ onConvert, onClear }) {
                             onClick={handleSwap}
                             disabled={!fromBase && !toBase}
                         >
-                            <img src="/assets/icons/shuffle.svg" draggable="false" />
+                            <img 
+                                src="/assets/icons/shuffle.svg" 
+                                className="icon-dynamic"
+                                draggable="false"
+                            />
                             <span>Swap</span>
                         </button>
                         <button 
@@ -210,7 +222,10 @@ function ConversionSection({ onConvert, onClear }) {
                             }
                             onClick={runConvert}
                         >
-                            <img src="/assets/icons/arrow-turn-down-right.svg" draggable="false" />
+                            <img 
+                                src="/assets/icons/arrow-turn-down-right.svg" 
+                                draggable="false" 
+                            />
                             <span>Convert</span>
                         </button>
                     </div>

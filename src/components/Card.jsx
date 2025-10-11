@@ -35,6 +35,7 @@ function Card({ contentKey, header, canCollapse = true, children }) {
                     >
                         <motion.img
                             src="/assets/icons/angle-small-down.svg"
+                            className="icon-dynamic"
                             draggable="false"
                             animate={{ rotate: collapsed ? 0 : 180 }}
                             transition={{ duration: 0.25 }}

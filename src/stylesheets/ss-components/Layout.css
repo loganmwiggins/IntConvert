@@ -21,6 +21,7 @@
 .app-window {
     background: var(--bg-1);
     color: var(--text-1);
+    box-shadow: var(--shadow-card);
     position: relative;
     width: 85%;
     height: 700px;

@@ -71,7 +71,11 @@ function Home() {
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
                                 whileTap={{ scale: 0.9 }}
                             >
-                                <img src="/assets/icons/bars-staggered.svg" draggable="false" />
+                                <img 
+                                    src="/assets/icons/bars-staggered.svg" 
+                                    className="icon-dynamic"
+                                    draggable="false" 
+                                />
                             </motion.button>
                             <motion.button 
                                 type="button"
@@ -84,7 +88,11 @@ function Home() {
                                 transition={{ duration: 0.3, ease: "easeInOut" }}
                                 whileTap={{ scale: 0.9 }}
                             >
-                                <img src="/assets/icons/cross-small.svg" draggable="false" />
+                                <img 
+                                    src="/assets/icons/cross-small.svg" 
+                                    className="icon-dynamic"
+                                    draggable="false" 
+                                />
                             </motion.button>
                         </div>
                         

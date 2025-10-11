@@ -2,14 +2,8 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Card from './Card';
+import { labelMap } from '../utils/baseUtils';
 import '../stylesheets/ss-components/CalculationSection.css';
-
-const labelMap = {
-    bin: "Binary",
-    oct: "Octal",
-    dec: "Decimal",
-    hex: "Hexadecimal",
-};
 
 function CalculationSection({
     result,

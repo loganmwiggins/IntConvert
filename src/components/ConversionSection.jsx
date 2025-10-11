@@ -9,26 +9,8 @@ import {
     octToBin, octToHex,
     hexToBin, hexToOct
 } from '../utils/conversions';
+import { labelMap, baseName, getBaseRegex } from '../utils/baseUtils';
 import '../stylesheets/ss-components/ConversionSection.css';
-
-const labelMap = {
-    bin: "Binary",
-    oct: "Octal",
-    dec: "Decimal",
-    hex: "Hexadecimal",
-};
-const baseName = (k) => labelMap[k] || "";
-
-// Returns a regex for allowed characters based on base
-function getBaseRegex(base) {
-    switch (base) {
-        case "bin": return /^[01]*$/i;
-        case "oct": return /^[0-7]*$/i;
-        case "dec": return /^[0-9]*$/i;
-        case "hex": return /^[0-9a-f]*$/i;
-        default: return /^.*$/;
-    }
-}
 
 function setAboutFromTo(from, to, setDescription) {
     if (from === "Binary" && to === "Decimal") {

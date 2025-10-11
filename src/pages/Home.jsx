@@ -15,6 +15,7 @@ function Home() {
     const [otherResult2, setOtherResult2] = useState(null);
     const [otherResult1Label, setOtherResult1Label] = useState(null);
     const [otherResult2Label, setOtherResult2Label] = useState(null);
+    const [showCalcSection, setShowCalcSection] = useState(true);
 
     const handleConverted = (payload) => {
         setResult(payload.result);
@@ -41,6 +42,10 @@ function Home() {
         setResultToBase(null);
         setResultFromValue(null);
     };
+    
+    const toggleCalcSection = () => {
+        setShowCalcSection((prev) => !prev);
+    };
 
     return (
         <div className="page-wrapper">
@@ -49,6 +54,15 @@ function Home() {
                     onConvert={handleConverted}
                     onClear={handleClearResults}
                 />
+
+                {result && (
+                    <button 
+                        type="button"
+                        onClick={toggleCalcSection}
+                    >
+                        <img src="/assets/icons/bars-staggered.svg" draggable="false" />
+                    </button>
+                )}
 
                 <CalculationSection
                     result={result}
@@ -61,6 +75,7 @@ function Home() {
                     otherResult2={otherResult2}
                     otherResult1Label={otherResult1Label}
                     otherResult2Label={otherResult2Label}
+                    showCalcSection={showCalcSection}
                 />
             </div>
         </div>

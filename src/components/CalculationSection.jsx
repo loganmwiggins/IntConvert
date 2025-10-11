@@ -16,10 +16,11 @@ function CalculationSection({
     otherResult2,
     otherResult1Label,
     otherResult2Label,
+    showCalcSection
 }) {
     return (
         <AnimatePresence>
-            {result && (
+            {result && showCalcSection && (
                 <motion.section 
                     className="calculation-section"
                     initial={{ opacity: 0, x: 20 }}

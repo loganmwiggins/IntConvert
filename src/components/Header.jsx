@@ -8,32 +8,51 @@ function Header() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const handleCalcClick = () => {
-        if (!location.pathname.includes('/home') && location.pathname !== '/') {
-            navigate('/');
+    const handleHomeClick = () => {
+        if (!location.pathname.includes("/home") && location.pathname !== "/") {
+            navigate("/");
         }
     };
 
     const handleSettingsClick = () => {
-        if (!location.pathname.includes('/settings')) {
-            navigate('/settings');
+        if (!location.pathname.includes("/settings")) {
+            navigate("/settings");
         }
     };
 
     const handleInfoClick = () => {
-        if (!location.pathname.includes('/info')) {
-            navigate('/info');
+        if (!location.pathname.includes("/info")) {
+            navigate("/info");
         }
     };
 
+    // Derive what to show in the header
+    const pageTitle =
+        location.pathname.startsWith("/settings") ? "Settings" :
+        location.pathname.startsWith("/info") ? "Information" :
+        "IntConvert";
+
     return (
         <div className="header">
-            <motion.div className="header-title">
-                <img src="/assets/icons/logo-v2.png" draggable="false" />
-                <h2>IntConvert</h2>
-            </motion.div>
+            <div className="header-title">
+                <motion.img 
+                    src="/assets/icons/logo-v2.png" 
+                    draggable="false" 
+                    onClick={handleHomeClick}
+                    whileTap={{ scale: 0.9 }}
+                />
+                <motion.h2
+                    key={pageTitle}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                    {pageTitle}
+                </motion.h2>
+            </div>
             <div className="header-btns">
-                <motion.button className="btn-icon" onClick={handleCalcClick} whileTap={{ scale: 0.9 }}>
+                <motion.button className="btn-icon" onClick={handleHomeClick} whileTap={{ scale: 0.9 }}>
                     <img src="/assets/icons/calculator.svg" draggable="false" />
                 </motion.button>
                 <motion.button className="btn-icon" onClick={handleSettingsClick} whileTap={{ scale: 0.9 }}>

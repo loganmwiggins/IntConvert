@@ -16,9 +16,9 @@ function Info() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.3, ease: "easeInOut", delay: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
             >
-                <Card header="App Information" canCollapse={false}>
+                <Card header="About" canCollapse={false}>
                     <p>
                         IntConvert was developed with the goal of creating a simple, 
                         intuitive, and well-designed application for converting integers 
@@ -34,7 +34,7 @@ function Info() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
             >
                 <Card header="App Version" canCollapse={false}>
                     <p>Version 2.0.0</p>
@@ -46,10 +46,10 @@ function Info() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
+                transition={{ duration: 0.3, ease: "easeInOut", delay: 0.3 }}
             >
                 <button type="button" className="btn-primary" onClick={handleGithubClick}>
-                    <img src="/assets/icons/github.svg" draggable="false" />
+                    <img src="/assets/icons/redirect.svg" draggable="false" />
                     <span>GitHub</span>
                 </button>
             </motion.div>

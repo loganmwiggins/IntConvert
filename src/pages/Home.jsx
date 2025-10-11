@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import ConversionSection from '../components/ConversionSection';
 import CalculationSection from '../components/CalculationSection';
@@ -18,6 +19,7 @@ function Home() {
     const [showCalcSection, setShowCalcSection] = useState(true);
 
     const handleConverted = (payload) => {
+        setShowCalcSection(true);
         setResult(payload.result);
         setResultFromBase(payload.resultFromBase);
         setResultToBase(payload.resultToBase);
@@ -55,14 +57,39 @@ function Home() {
                     onClear={handleClearResults}
                 />
 
-                {result && (
-                    <button 
-                        type="button"
-                        onClick={toggleCalcSection}
-                    >
-                        <img src="/assets/icons/bars-staggered.svg" draggable="false" />
-                    </button>
-                )}
+                <AnimatePresence>
+                    {result && (
+                        <div className="menu-btn-ctnr">
+                            <motion.button 
+                                type="button"
+                                className="btn-menu"
+                                title={showCalcSection ? "Hide Results" : "Show Results"}
+                                onClick={toggleCalcSection}
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <img src="/assets/icons/bars-staggered.svg" draggable="false" />
+                            </motion.button>
+                            <motion.button 
+                                type="button"
+                                className="btn-menu"
+                                title="Clear Results"
+                                onClick={handleClearResults}
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <img src="/assets/icons/cross-small.svg" draggable="false" />
+                            </motion.button>
+                        </div>
+                        
+                    )}
+                </AnimatePresence>
 
                 <CalculationSection
                     result={result}

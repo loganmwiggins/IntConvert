@@ -157,7 +157,7 @@ function ConversionSection({ onConvert, onClear }) {
                                 className="input-clear-btn"
                                 onClick={() => setFromValue("")}
                                 tabIndex={-1}
-                                aria-label="Clear input"
+                                title="Clear value"
                             >
                                 <img src="/assets/icons/cross-small.svg" draggable="false" />
                             </button>
@@ -180,6 +180,7 @@ function ConversionSection({ onConvert, onClear }) {
                     <div className="button-row">
                         <button 
                             className="btn-secondary"
+                            title="Clear all inputs"
                             style={{ flex: 1 }}
                             onClick={handleClear}
                             disabled={!fromBase && !toBase}
@@ -189,6 +190,7 @@ function ConversionSection({ onConvert, onClear }) {
                         </button>
                         <button 
                             className="btn-secondary"
+                            title="Swap bases"
                             style={{ flex: 1 }}
                             onClick={handleSwap}
                             disabled={!fromBase && !toBase}
@@ -198,6 +200,7 @@ function ConversionSection({ onConvert, onClear }) {
                         </button>
                         <button 
                             className="btn-primary"
+                            title="Convert [Enter]"
                             style={{ flex: 1 }}
                             disabled={
                                 !fromBase ||

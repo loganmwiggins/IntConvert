@@ -25,3 +25,104 @@
     gap: 1.5rem;
     user-select: none;
 }
+
+/* Popover menu */
+.header-menu-wrap {
+    position: relative;
+}
+
+.header-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 220px;
+    background: var(--bg-1);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: var(--shadow-modal);
+    z-index: 1000;
+}
+
+.header-menu .menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border: none;
+    background: transparent;
+    color: inherit;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.header-menu .menu-item:hover {
+    /* background: rgba(0,0,0,0.06); */
+    background: var(--label-bg-light);
+}
+
+.header-menu .menu-item.is-active {
+    background: var(--label-bg-light);
+    color: var(--label-color);
+    /* outline: 1.5px solid var(--label-color); */
+
+    img {
+        filter: var(--filter-accent-pink);
+    }
+}
+
+.header-menu .menu-separator {
+    height: 1px;
+    margin: 6px 8px;
+    /* background: rgba(0,0,0,0.08); */
+    background: var(--bg-4);
+    border-radius: 1px;
+}
+
+.header-menu .icon-dynamic {
+    width: 18px;
+    height: 18px;
+}
+
+/* Toggle switch */
+.header-menu .menu-toggle {
+    position: relative;
+    user-select: none;
+}
+
+.header-menu .menu-toggle input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.header-menu .menu-toggle .toggle {
+    margin-left: auto;
+    width: 44px;
+    height: 24px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 999px;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.header-menu .menu-toggle .knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s ease;
+}
+
+.header-menu .menu-toggle input:checked + .toggle {
+    background: var(--label-color);
+}
+
+.header-menu .menu-toggle input:checked + .toggle .knob {
+    transform: translateX(20px);
+}
